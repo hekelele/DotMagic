@@ -34,13 +34,26 @@ void reflect(PGraphics s,PGraphics f){
 	f.beginDraw();
 	f.background(255);
 	float sz = 4;
+	float center_xx, center_yy, r;
+	center_xx = g_size/2f;
+	center_yy = g_size/2f;
+	r = g_size/2f;
+
 	for (int i = 0; i < s.pixels.length; i++) {
 		int xx,yy;
 		xx = i%g_size;
 		yy = i/g_size;
 		float xx2,yy2;
-		xx2 = xx+sz*cos(yy*0.3f);
-		yy2 = yy;
+
+		float dx = (xx - center_xx)/r;
+		float dy = (yy - center_yy)/r;
+
+		float u = dx*sqrt(1-dy*dy/2);
+		float v = dy*sqrt(1-dx*dx/2);
+
+		xx2 = u*r+center_xx;
+		yy2 = v*r+center_yy;
+		
 		f.fill(s.pixels[i]);
 		f.noStroke();
 		f.rect(xx2,yy2,1,1);
