@@ -1,0 +1,2 @@
+# DotMagic
+ Digital Drawing Assistant
